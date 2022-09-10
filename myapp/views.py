@@ -1,5 +1,6 @@
+from http.client import HTTPResponse
 from django.shortcuts import render
-from django.http import HttpRequest
+from myapp.models import Employee
 
 
 # Create your views here.
@@ -12,5 +13,10 @@ def sign_up(request):
     return render(request, 'signup.html')
 
 
-def show_student(request):
-    return render(request, 'student/student.html')
+def show_employee(request):
+    context = {'employees': Employee.objects.all()}
+    return render(request, 'employee/index.html', context)
+
+
+def add_employee(request):
+    print("add")
